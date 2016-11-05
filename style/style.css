@@ -1,8 +1,27 @@
-.col-xs-12 {
-    
+body {
+padding-top: 10px;
 }
 
-.nopadding {
-   padding: 0 !important;
-   margin: -7px 0px -13px 0px !important;
+
+#app_cvs{
+
+margin-left: 10%;
+margin-right: 10%;
+margin-top: 40px;
 }
+
+.DayName, .Schedule_Column{
+width: 12%;
+padding-left: -40px;
+padding-right: -40px;
+}
+
+
+.leftcol{
+width:16%;
+}
+#corner, .leftCol{
+width: 16%;
+}
+
+
