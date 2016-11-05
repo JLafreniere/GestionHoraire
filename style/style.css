@@ -1,27 +1,35 @@
 body {
-padding-top: 10px;
+	padding-top: 10px
 }
 
-
-#app_cvs{
-
-margin-left: 10%;
-margin-right: 10%;
-margin-top: 40px;
+#app_cvs {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 40px
 }
 
-.DayName, .Schedule_Column{
-width: 12%;
-padding-left: -40px;
-padding-right: -40px;
+.DayName,
+.Schedule_Column {
+	width: 12%;
+	padding-left: -40px;
+	padding-right: -40px
 }
 
-
-.leftcol{
-width:16%;
-}
-#corner, .leftCol{
-width: 16%;
+.leftcol {
+	width: 16%
 }
 
+#corner,
+.leftCol {
+	width: 16%
+}
 
+#btnGo{
+    height:30px; 
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+    margin-top: 10px;
+}

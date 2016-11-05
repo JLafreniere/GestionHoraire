@@ -37,8 +37,11 @@
                language: 'en-US'
                });
                </script>
+
             </div>
+            <input type="button" value="Go!" onclick="refreshApp()" id="btnGo">
          </div>
+
          
          <canvas id="app_cvs" width="900px" height="600px"></canvas>
          <script>creerCanvas()</script>
@@ -49,6 +52,6 @@
          crossorigin="anonymous"></script>
          <script type="text/javascript" src="./scripts/global_vars.js"></script>
          
-         <input type="button" onclick="kek()" value="Bonjour">
+         <input type="button" onclick="refreshApp();" value="Bonjour">
       </body>
    </html>

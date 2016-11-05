@@ -46,7 +46,7 @@ function creerCanvas() {
 
 window.onload = function() {
 
-loadCanvas(Date.now());
+    loadCanvas(Date.now());
 
 
 
@@ -60,12 +60,12 @@ function executeEvents(x, y) {
 }
 
 
-function loadCanvas(date){
+function loadCanvas(date) {
 
-	
+
     app = document.getElementById("app_cvs");
     let c = app.getContext("2d");
-    
+
 
 
     c.fillStyle = "black";
@@ -76,7 +76,7 @@ function loadCanvas(date){
     c.strokeRect(0, 0, HeaderColumnWidth, app.height);
 
 
-	 ScheduleColumnWidth = (app.width - HeaderColumnWidth) / 7;
+    ScheduleColumnWidth = (app.width - HeaderColumnWidth) / 7;
 
     c.font = "14px Segoe UI"
 
@@ -100,11 +100,11 @@ function loadCanvas(date){
     let date_semaine = getLastSunday(date);
     for (var i = 0; i < 7; i++) {
 
-    	
+
 
 
         c.strokeRect(HeaderColumnWidth + (ScheduleColumnWidth * i), 0, ScheduleColumnWidth, app.height);
-        c.fillText(WeekDays[i] + " " +  date_semaine.getDate(), HeaderColumnWidth + (ScheduleColumnWidth * i) + (ScheduleColumnWidth / 2), HeaderHeight - 10, ScheduleColumnWidth);
+        c.fillText(WeekDays[i] + " " + date_semaine.getDate(), HeaderColumnWidth + (ScheduleColumnWidth * i) + (ScheduleColumnWidth / 2), HeaderHeight - 10, ScheduleColumnWidth);
         c.closePath();
         date_semaine.setDate(date_semaine.getDate() + 1);
     }
@@ -127,26 +127,22 @@ function loadCanvas(date){
 function DrawRect(dateDebut, dateFin) {
 
 
-
-
-
-
     let app = document.getElementById("app_cvs");
     let c = app.getContext("2d");
-    c.globalCompositeOperation='destination-over';
+    c.globalCompositeOperation = 'destination-over';
     c.beginPath();
     c.fillStyle = "rgba(112,194,228, 0.6)";
     c.strokeStyle = "black";
-    
+
     let posX = HeaderColumnWidth + (dateDebut.getDay() * ScheduleColumnWidth);
-    let heureDebut = dateDebut.getHours() + (dateDebut.getMinutes()/60);
-    let heureFin = dateFin.getHours() + (dateFin.getMinutes()/60);
+    let heureDebut = dateDebut.getHours() + (dateDebut.getMinutes() / 60);
+    let heureFin = dateFin.getHours() + (dateFin.getMinutes() / 60);
 
-    let height = app.height * ((heureFin - heureDebut)/24)
-    let posY = (heureDebut / 24)*app.height;
+    let height = app.height * ((heureFin - heureDebut) / 24)
+    let posY = (heureDebut / 24) * app.height;
 
-    c.fillRect(posX+1, posY, ScheduleColumnWidth-1, height);
-    c.strokeRect(posX+1, posY, ScheduleColumnWidth-1, height);
+    c.fillRect(posX + 1, posY, ScheduleColumnWidth - 1, height);
+    c.strokeRect(posX + 1, posY, ScheduleColumnWidth - 1, height);
 
 
 
@@ -159,16 +155,29 @@ function DrawRect(dateDebut, dateFin) {
     c.fillRect(100, 150, 100, 100);
     c.fillRect(100, 170, 100, 100);
     */
-    
-c.closePath();
+
+    c.closePath();
 
 
 }
 
 
+function refreshApp(){
+
+let ct = app.getContext("2d");
+ct.clearRect(0, 0, app.width, app.height);
+console.log("TEST");
+//TODO: RETRIEVE DATE FROM DATETIMEPICKER
+let newDate = new Date(document.getElementById("date_sem").value);
+loadCanvas(newDate);
+
+}
+
+
+
 function getLastSunday(d) {
-  var t = new Date(d);
-  t.setDate(t.getDate() - t.getDay());
-  console.log(t);
-  return t;
+    var t = new Date(d);
+    t.setDate(t.getDate() - t.getDay());
+    console.log(t);
+    return t;
 }
