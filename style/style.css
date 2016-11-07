@@ -33,3 +33,12 @@ body {
     left:50%;
     margin-top: 10px;
 }
+
+#semaine_du{
+text-align: center;
+padding-left: 10px;
+}
+
+#container{   width: 100%;
+   text-align:center;}
+canvas{display: inline;}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
    <head>
+   <script type="text/javascript" src="./scripts/global_vars.js"></script>
       <title>Maquette - Gestion des horaires</title>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +17,16 @@
          
          <div class="row">
             <div class="div-col-xs-2 col-xs-offset-5">
-               <div id="datetimepicker" class="input-append date">
-                  <input type="text" id="date_sem"></input>
+               <div id="datetimepicker" class="input-append date" onchange="console.log('test')">
+                  <input type="text" id="date_sem" ></input>
+                  <script>
+                  let field = document.getElementById("date_sem");
+                  let now = new Date(Date.now());
+                  console.log(now);
+                  field.value = now.getFullYear()+"-"+String("00" + (now.getMonth()+1)).slice(-2)+"-"+String("00" + now.getDate()).slice(-2);
+                  
+
+                  </script>
                   <span class="add-on">
                      <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                   </span>
@@ -39,19 +48,21 @@
                </script>
 
             </div>
-            <input type="button" value="Go!" onclick="refreshApp()" id="btnGo">
+            <input type="button" value="Go!" onclick="refreshApp()" id="btnGo"><br><br>
+            <h1 id="semaine_du"></h1>
          </div>
 
-         
+         <div id="container">
          <canvas id="app_cvs" width="900px" height="600px"></canvas>
-         <script>creerCanvas()</script>
+         </div>
+         <script>refreshApp(); creerCanvas(); </script>
          <script type="text/javascript" src="./scripts/tests.js"></script>
          <script
          src="https://code.jquery.com/jquery-3.1.1.js"
          integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
          crossorigin="anonymous"></script>
          <script type="text/javascript" src="./scripts/global_vars.js"></script>
-         
+         <br><br>
          <input type="button" onclick="refreshApp();" value="Bonjour">
       </body>
    </html>
