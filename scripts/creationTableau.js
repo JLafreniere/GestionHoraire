@@ -33,10 +33,7 @@ function creerCanvas() {
 
         console.log("x:" + x + " y:" + y);
 
-
         executeEvents(x, y);
-
-
 
     }
 
@@ -245,4 +242,10 @@ Date.prototype.format = function(){
     return this.getDate() +
     " " +  (monthNames[this.getMonth()]) + 
     " " +  this.getFullYear();
+}
+
+function afficherShifts(shifts){
+    for (var i = shifts.length - 1; i >= 0; i--) {
+    DrawRect(shifts[i].Employe, shifts[i].debut,shifts[i].fin);
+}
 }
