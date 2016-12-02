@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WEB_APP_GESTION_HORAIRE", "WEB_APP_GESTION_HORAIRE\WEB_APP_GESTION_HORAIRE.vbproj", "{535B5245-8BED-4DAB-9A9B-E0704E50CE36}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WEB_APP_GESTION_HORAIRE.Tests", "WEB_APP_GESTION_HORAIRE.Tests\WEB_APP_GESTION_HORAIRE.Tests.vbproj", "{21AEFF92-297D-4866-8669-9DA920E85AA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{535B5245-8BED-4DAB-9A9B-E0704E50CE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{535B5245-8BED-4DAB-9A9B-E0704E50CE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{535B5245-8BED-4DAB-9A9B-E0704E50CE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{535B5245-8BED-4DAB-9A9B-E0704E50CE36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21AEFF92-297D-4866-8669-9DA920E85AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21AEFF92-297D-4866-8669-9DA920E85AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21AEFF92-297D-4866-8669-9DA920E85AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21AEFF92-297D-4866-8669-9DA920E85AA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
