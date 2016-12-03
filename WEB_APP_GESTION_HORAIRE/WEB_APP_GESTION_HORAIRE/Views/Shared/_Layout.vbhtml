@@ -43,9 +43,6 @@
                         <li class="Horaire">
                             @Html.ActionLink("Mon horaire", "MonHoraire")
                         </li>
-                        <li class="VoirHoraires adminTab">
-                            @Html.ActionLink("Voir les horaires", "Horaires")
-                        </li>
                         <li class="GererHoraires adminTab">
                            @Html.ActionLink("Gérer les horaires", "Horaires", "Horaires", New With {.area = ""}, New With {.class = ""})
                         </li>
@@ -112,7 +109,7 @@
     Else
 End Code
                     <form action="/Utilisateurs/DeconnecterUtilisateur" method="post" Class="navbar-form navbar-right">
-                    <button class="btn btn-default" type="submit">Déconnexion</button>
+                    <button class="btn btn-default" type="submit" id="deco">Déconnexion</button>
                         </form>
                     @code
 
@@ -132,7 +129,7 @@ End Code
 
             let idActif = $("#pageName").val();
             $("." + idActif).addClass("active");
-
+           
 
         </script>
         <hr />
@@ -140,7 +137,8 @@ End Code
                             <p> @DateTime.Now.Year - Jonathan Lafrenière</p>
         </footer>
     </div>
-
+    
+    
     
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

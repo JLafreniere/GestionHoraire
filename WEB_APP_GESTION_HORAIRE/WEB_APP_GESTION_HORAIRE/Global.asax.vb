@@ -17,8 +17,8 @@ Public Class MvcApplication
         init.InitializeDatabase(New BddContext())
 
         Using bob As New Dal()
-            bob.ajouterUtilisateur("Utilisateur", "1234", "j@j.j", False, "Nom", "Prenom", "819-555-5555")
-            bob.ajouterUtilisateur("Administrateur", "1234", "j@j.j", True, "Nom", "Prenom", "819-555-5555")
+            bob.ajouterUtilisateur("Utilisateur", "1234", "j@j.j", False, "Jean", "Légaré", "819-555-5555")
+            bob.ajouterUtilisateur("Administrateur", "1234", "j@j.j", True, "Matthew", "Johnson", "819-555-5555")
             Debug.WriteLine("Crypt: " + bob.obtenirTousLesUtilisateurs(0).password)
             Debug.WriteLine("       " + (Utilisateur.Hash512("1234", bob.obtenirTousLesUtilisateurs(0).salt)))
             Debug.WriteLine("Nb Utilisateurs:  " & bob.obtenirTousLesUtilisateurs.Count)
