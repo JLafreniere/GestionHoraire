@@ -1,20 +1,16 @@
 ﻿Imports System.ComponentModel.DataAnnotations
-
-Imports System.IO
-Imports System.Text
-Imports System.Data
-Imports System.Data.SqlClient
-Imports System.Configuration
 Imports System.Security.Cryptography
-Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class Utilisateur
 
     Public Property id As Integer
-
+    <MinLength(5)>
     Public Property username As String
+    <MinLength(5)>
     Public Property password As String
+    <MinLength(2)>
     Public Property nom As String
+    <MinLength(2)>
     Public Property prenom As String
     Public Property telephone As String
     Public Property email As String

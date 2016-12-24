@@ -14,7 +14,7 @@ Namespace Controllers
                 Dim liste As List(Of Emplacement) = accessLayer.obtenirEmplacements()
                 Dim entrepr As List(Of Entreprise) = accessLayer.obtenirEntreprises()
                 ViewBag.entrepr = entrepr
-                Debug.WriteLine("Action ListeEmplacements")
+
                 Return View("ListeEmplacements", liste)
             End Using
 
@@ -45,6 +45,7 @@ Namespace Controllers
             End If
 
             Dim nomEmplacement As String = Request("nom_emplacement")
+
             Dim adresse As String = Request("adresse")
             Dim telephone As String = Request("telephone")
             Dim id_entreprise As Integer = Request("entreprise")

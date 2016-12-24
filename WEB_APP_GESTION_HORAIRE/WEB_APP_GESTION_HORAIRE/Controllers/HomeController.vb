@@ -7,10 +7,24 @@ Namespace Controllers
 
         ' GET: Home
         Function Index() As ActionResult
+
+            Using d As New Dal()
+                Dim listeUser = d.obtenirTousLesUtilisateurs()
+                Dim utilisateur As Utilisateur
+                Try
+                    utilisateur = (From u As Utilisateur In listeUser
+                                   Where u.id = Integer.Parse(Session("UID"))
+                                   Select u).ToList()(0)
+                    System.Diagnostics.Debug.WriteLine(Session("UserName") & " --- accueil")
+                    ViewBag.user = utilisateur.prenom + " " + utilisateur.nom
+                Catch exc As Exception
+                    ViewBag.user = exc.Message
+                End Try
+
+            End Using
             Return View()
 
         End Function
-
 
 
 

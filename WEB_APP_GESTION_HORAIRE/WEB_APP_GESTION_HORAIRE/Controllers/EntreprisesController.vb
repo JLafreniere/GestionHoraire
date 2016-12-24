@@ -12,7 +12,7 @@ Namespace Controllers
 
             Using accessLayer As New Dal
                 Dim liste As List(Of Entreprise) = accessLayer.obtenirEntreprises()
-                Debug.WriteLine("Action ListeEntreprise")
+
                 Return View("ListeEntreprises", liste)
             End Using
 
@@ -31,7 +31,7 @@ Namespace Controllers
             End If
             Using accessLayer As New Dal
                 Dim liste As List(Of Entreprise) = accessLayer.obtenirEntreprises()
-                Debug.WriteLine("Action ListeEntreprise")
+
                 Return View("ListeEntreprises", liste)
             End Using
         End Function
@@ -49,7 +49,7 @@ Namespace Controllers
             Using accessLayer As New Dal
                 accessLayer.ajouterEntreprise(nomEntreprise)
                 Dim liste As List(Of Entreprise) = accessLayer.obtenirEntreprises()
-                Debug.WriteLine("Action ListeEntreprise")
+
                 Return View("ListeEntreprises", liste)
             End Using
 

@@ -158,6 +158,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="My Project\PublishProfiles\FTP ASP.Net Host.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Horaire\creationTableau.js" />
     <Content Include="Scripts\Horaire\global_vars.js" />
@@ -232,10 +233,6 @@
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Home\Index.vbhtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\MonHoraire.vbhtml" />
-    <Content Include="Views\Home\VoirHoraires.vbhtml" />
-    <Content Include="Views\Home\GererHoraires.vbhtml" />
-    <Content Include="Views\Home\Entreprises.vbhtml" />
     <Content Include="Views\Utilisateurs\CreerUtilisateur.vbhtml" />
     <Content Include="Views\Shared\PermissionDenied.vbhtml" />
     <Content Include="Views\Utilisateurs\ListeUtilisateurs.vbhtml" />
@@ -245,6 +242,7 @@
     <Content Include="Views\Emplacements\CreerEmplacement.vbhtml" />
     <Content Include="Views\Horaires\Horaires.vbhtml" />
     <Content Include="Views\Horaires\CreerQuart.vbhtml" />
+    <Content Include="Views\Horaires\MonHoraire.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,5 @@
 ﻿Imports System.Data.Entity
+Imports System.Globalization
 Imports WEB_APP_GESTION_HORAIRE
 
 Public Class BddContext
@@ -10,16 +11,19 @@ Public Class BddContext
     Public Property Entreprises As DbSet(Of Entreprise)
     Public Property Utilisateurs As DbSet(Of Utilisateur)
 
-    Public Sub New()
-
+    Public Sub New(connectionString As String)
+        MyBase.New(connectionString)
     End Sub
+
+
+
 
 End Class
 
 Public Interface IDal
     Inherits IDisposable
 
-    Sub ajouterUtilisateur(_username As String, _plainTextPassword As String, _email As String, _admin As Boolean, _nom As String, _prenom As String, _telephone As String)
+    Function ajouterUtilisateur(_username As String, _plainTextPassword As String, _email As String, _admin As Boolean, _nom As String, _prenom As String, _telephone As String) As Boolean
     Function obtenirTousLesUtilisateurs() As List(Of Utilisateur)
     Function obtenirEntreprises() As List(Of Entreprise)
     Function obtenirEmplacements() As List(Of Emplacement)
@@ -28,35 +32,53 @@ End Interface
 Public Class Dal
     Implements IDal
 
-    Private bdd As New BddContext()
+    Private bdd As New BddContext("ConnStringDb1")
 
     Public Sub Dal()
 
     End Sub
 
-    Public Sub ajouterUtilisateur(_username As String, _plainTextPassword As String, _email As String, _admin As Boolean, _nom As String, _prenom As String, _telephone As String) Implements IDal.ajouterUtilisateur
+    Public Function ajouterUtilisateur(_username As String, _plainTextPassword As String, _email As String, _admin As Boolean, _nom As String, _prenom As String, _telephone As String) As Boolean Implements IDal.ajouterUtilisateur
 
-        ''TODO: Implement password encryption
         Dim salt As String = Utilisateur.CreateRandomSalt()
 
+        Dim userWithSameName = (From u As Utilisateur In bdd.Utilisateurs.ToList()
+                                Where u.username = _username
+                                Select u).ToList().Count
+
+        If userWithSameName = 0 Then
+            bdd.Utilisateurs.Add(New Utilisateur With {.username = _username, .email = _email, .password =
+                     Utilisateur.Hash512(_plainTextPassword, salt), .salt = salt, .admin = _admin, .nom = _nom, .prenom = _prenom, .telephone = _telephone})
+            bdd.SaveChanges()
+            Return True
+        Else
+            Debug.WriteLine("Existing username")
+            Return False
+        End If
 
 
-        bdd.Utilisateurs.Add(New Utilisateur With {.username = _username, .email = _email, .password =
-                             Utilisateur.Hash512(_plainTextPassword, salt), .salt = salt, .admin = _admin, .nom = _nom, .prenom = _prenom, .telephone = _telephone})
+
+
+    End Function
+
+    Public Sub ajouterQuart(_emplacement As Integer, _employe As Integer, _debut As String, _fin As String)
+
+
+
+        Dim debutShift As DateTime = DateTime.ParseExact(_debut, "yyyy/MM/dd HH:mm", CultureInfo.CurrentCulture)
+        Dim finShift As DateTime = DateTime.ParseExact(_fin, "yyyy/MM/dd HH:mm", CultureInfo.CurrentCulture)
+
+        Dim quart = New Shift With {.emplacement = bdd.Emplacements.Find(_emplacement), .utilisateur = bdd.Utilisateurs.Find(_employe), .debut = debutShift, .fin = finShift}
+        bdd.Shifts.Add(quart)
         bdd.SaveChanges()
 
     End Sub
 
-    Friend Sub ajouterEmplacement(_nomEmplacement As String, _adresse As String, _telephone As String, entreprise As Integer)
+    Public Sub ajouterEmplacement(_nomEmplacement As String, _adresse As String, _telephone As String, entreprise As Integer)
 
 
 
         Dim newEmpl = New Emplacement With {.adresse = _adresse, .telephone = _telephone, .nom_Emplacement = _nomEmplacement, .entreprise = bdd.Entreprises.Find(entreprise)}
-
-
-
-
-
 
         bdd.Emplacements.Add(newEmpl)
         bdd.SaveChanges()
@@ -64,6 +86,10 @@ Public Class Dal
 
     Public Function obtenirTousLesUtilisateurs() As List(Of Utilisateur) Implements IDal.obtenirTousLesUtilisateurs
         Return bdd.Utilisateurs.ToList()
+    End Function
+
+    Public Function obtenirTousLesQuarts() As List(Of Shift)
+        Return bdd.Shifts.ToList()
     End Function
 
     Friend Sub supprimerEmplacement(id As Integer)
@@ -121,6 +147,8 @@ Public Class Dal
         ' TODO: uncomment the following line if Finalize() is overridden above.
         ' GC.SuppressFinalize(Me)
     End Sub
+
+
 #End Region
 
 

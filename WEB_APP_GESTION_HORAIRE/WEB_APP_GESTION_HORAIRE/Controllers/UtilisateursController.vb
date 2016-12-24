@@ -7,7 +7,7 @@ Namespace Controllers
         Function Utilisateurs()
             If Session("AdminRights") Then
                 Using accessLayer As New Dal
-
+                    ViewBag.fail = False
                     Return View("CreerUtilisateur")
                 End Using
 
@@ -33,7 +33,7 @@ Namespace Controllers
         <HttpPost>
         Function creerUtilisateur() As ActionResult
             If Session("AdminRights") Then
-                Debug.WriteLine("Création " + Request("username") + " P: " + Request("password"))
+
 
                 Dim username As String = Request("username")
                 Dim password As String = Request("password")
@@ -50,11 +50,16 @@ Namespace Controllers
 
 
                 Using accessLayer As New Dal()
-                    accessLayer.ajouterUtilisateur(username, password, email, admin, nom, prenom, telephone)
-
+                    Dim success As Boolean = accessLayer.ajouterUtilisateur(username, password, email, admin, nom, prenom, telephone)
+                    If success Then
+                        Return RedirectToAction("Index", "Home")
+                    Else
+                        ViewBag.fail = True
+                        Return View("CreerUtilisateur")
+                    End If
 
                 End Using
-                Return RedirectToAction("Index", "Home")
+
 
             Else Return View("~/Views/Shared/PermissionDenied.vbhtml")
             End If
@@ -88,31 +93,35 @@ Namespace Controllers
 
         <HttpPost>
         Function ConnecterUtilisateur() As ActionResult
-            Dim _username As String = Request("_username")
-            Dim password As String = Request("password")
-            Session.Timeout = 10000
 
-            Debug.WriteLine(Request("_username") + " P: " + Request("password"))
+            Try
 
-            Using accessLayer As New Dal
-                Dim users As List(Of Utilisateur) = accessLayer.obtenirTousLesUtilisateurs()
-                Dim requestedUser = From u In users
-                                    Where u.username = _username And u.password = Utilisateur.Hash512(password, u.salt)
-                                    Select u
-                Try
+                Dim _username As String = Request("_username")
+                Dim password As String = Request("password")
 
-                    Debug.WriteLine("Connexion" + requestedUser(0).username)
-                    Session("UID") = requestedUser(0).id
-                    Session("AdminRights") = requestedUser(0).admin
-                    Session("UserLogged") = True
-                    Return RedirectToAction("Index", "Home")
 
-                Catch exc As Exception
-                    Debug.WriteLine("utilisateur invalide")
+
+
+                Using accessLayer As New Dal
+                    Dim users As List(Of Utilisateur) = accessLayer.obtenirTousLesUtilisateurs()
+                    Dim requestedUser As Utilisateur = (From u In users
+                                                        Where u.username = _username And u.password = Utilisateur.Hash512(password, u.salt)
+                                                        Select u).ToList()(0)
+
+                    System.Diagnostics.Debug.WriteLine(requestedUser.username + " EST CONNECTÉ (UID: " & requestedUser.id & ")")
+                Session("UID") = requestedUser.id
+                Session("UserName") = requestedUser.username
+                Session("AdminRights") = requestedUser.admin
+                Session("UserLogged") = True
+                Return RedirectToAction("Index", "Home")
+
+                End Using
+            Catch exc As Exception
+
+                Debug.WriteLine("utilisateur invalide " + exc.Message)
                     Return RedirectToAction("Index", "Home")
                 End Try
 
-            End Using
 
 
         End Function

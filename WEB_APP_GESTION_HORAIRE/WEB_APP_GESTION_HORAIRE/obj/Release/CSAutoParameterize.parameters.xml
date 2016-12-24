@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConnStringDb1-Web.config Connection String" description="ConnStringDb1 Connection String used in web.config by the application to access the database." defaultValue="Data Source=SQL5030.SmarterASP.NET;Initial Catalog=DB_A15246_gestionHoraire;User Id=DB_A15246_gestionHoraire_admin;Password=database1234;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\JL\\Desktop\\Backup\\WEB_APP_GESTION_HORAIRE\\WEB_APP_GESTION_HORAIRE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnStringDb1']/@connectionString" />
+  </parameter>
+  <parameter name="LocalDevString-Web.config Connection String" description="LocalDevString Connection String used in web.config by the application to access the database." defaultValue="Data Source=SQL5030.SmarterASP.NET;Initial Catalog=DB_A15246_gestionHoraire;User Id=DB_A15246_gestionHoraire_admin;Password=database1234;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\JL\\Desktop\\Backup\\WEB_APP_GESTION_HORAIRE\\WEB_APP_GESTION_HORAIRE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LocalDevString']/@connectionString" />
+  </parameter>
+  <parameter name="WEB_APP_GESTION_HORAIRE.BddContext-Web.config Connection String" description="WEB_APP_GESTION_HORAIRE.BddContext Connection String used in web.config by the application to access the database." defaultValue="WEB_APP_GESTION_HORAIRE.BddContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\JL\\Desktop\\Backup\\WEB_APP_GESTION_HORAIRE\\WEB_APP_GESTION_HORAIRE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WEB_APP_GESTION_HORAIRE.BddContext']/@connectionString" />
+  </parameter>
+</parameters>
